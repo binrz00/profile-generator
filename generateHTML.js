@@ -173,28 +173,28 @@ function generateHTML(data,res,starRes) {
       </style>
       <body>
       <div class="wrapper">
-      <div class="photo-header>
+      <div class="photo-header">
       <img src="${res.data.avatar_url}" alt="image of user">
-      <h1 class="photo-header>Hello</h1><br>
-      <h2 class="photo-header>My name is ${res.data.name}!</h2><br>
+      <h1>Hello</h1><br>
+      <h2>My name is ${res.data.name}!</h2><br>
       <div class="links-nav">
-      <a class="nav-link" href="${maps}" target="blank"><i class="fas fa-location-arrow"></i>${res.data.location}</a>
+      <a class="nav-link" href="https://www.google.com/maps/place/${res.data.location.replace(/\s+/g, '')}" target="blank"><i class="fas fa-location-arrow"></i>${res.data.location}</a>
       <a class="nav-link" href="${res.data.html_url}" target="blank"><i class="fab fa-github-alt"></i>GitHub</a>
       <a class="nav-link" href="${res.data.blog}" target="blank"><i class="fas fa-rss"></i>Blog</a>
          </div>
          </div>
          <main>
-         <h2>${res.data.bio}</h2>
+         <h2 class="col">${res.data.bio}</h2>
          <div class="conatianer">
          <div class="row">
          <div class="col">
-         <div class="card>
+         <div class="card">
          <h3>Public Repositories</h3><br>
          <h5>${res.data.public_repos}</h5>
          </div>
          </div>
          <div class="col">
-         <div class="card>
+         <div class="card">
          <h5>followers</h5><br>
          <h5>${res.data.followers}</h5>
          </div>
@@ -202,13 +202,13 @@ function generateHTML(data,res,starRes) {
          </div>
          <div class="row">
          <div class="col">
-         <div class="card>
+         <div class="card">
          <h3>GitHub Stars</h3><br>
          <h5>${starRes.data.length}</h5>
          </div>
          </div>
          <div class="col">
-         <div class="card>
+         <div class="card">
          <h5>following</h5><br>
          <h5>${res.data.following}</h5>
          </div>
@@ -220,3 +220,5 @@ function generateHTML(data,res,starRes) {
          </body>
       `
         };
+        
+      

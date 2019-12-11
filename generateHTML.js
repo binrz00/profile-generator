@@ -1,4 +1,4 @@
-const colors = {
+exports.colors = {
   green: {
     wrapperBackground: "#E6E1C3",
     headerBackground: "#C1C72C",
@@ -25,7 +25,7 @@ const colors = {
   }
 };
 
-function generateHTML(data,res,starRes) {
+exports.generateHTML=function(colors,data,res,starRes) {
   return `<!DOCTYPE html>
 <html lang="en">
    <head>

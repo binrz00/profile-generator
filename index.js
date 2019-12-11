@@ -5,6 +5,7 @@ const util = require("util");
 const writeFileAsync = util.promisify(fs.writeFile);
 const genHtml = require("./generateHTML")
 //convertFactory = require('electron-html-to');
+const pdf = require('html-pdf');
 
 const questions = [{
 
@@ -37,30 +38,34 @@ const questions = [{
   axios.get(starquery).then(function(starRes){
         console.log(starRes.data.length);
         const html = genHtml.generateHTML(genHtml.colors,data,res,starRes);
-        writeFileAsync("profile.html",html,"utf8")
+        writeFileAsync("profile.html",html,"utf8");
+        const options = { format: 'Letter'};
+        pdf.create(html, options).toFile("profile.pdf", function(err, res) {
+         if (err) return console.log(err);
+         console.log(res); 
+        });
+        
+        
     })
 })
 
 })
   
- 
+
 // const conversion = convertFactory({converterPath: convertFactory.converters.PDF});
  
 // conversion({ html }, function(err, result) {
 //   if (err) {
 //     return console.error(err);
 //   }
- 
-//   console.log(result.numberOfPages);
 //   console.log(result.logs);
 //   result.stream.pipe(fs.createWriteStream('./index.pdf'));
 //   conversion.kill(); // necessary if you use the electron-server strategy, see bellow for details
-//});
+// });
 
-// const pdf = require('html-pdf');
+
 // const options = { format: 'Letter' };
- 
-// pdf.create(html, options).toFile("profile.pdf", function(err, res) {
+//  pdf.create(html, options).toFile("profile.pdf", function(err, res) {
 //   if (err) return console.log(err);
 //   console.log(res); 
 // });

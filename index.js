@@ -2,45 +2,66 @@ const inquirer = require("inquirer");
 const fs = require("fs");
 const axios = require("axios");
 
-const questions = [{
+// const questions = [{
 
-    message: "what is your git hub user name?",
-    name: "userName"
+//     message: "what is your git hub user name?",
+//     name: "userName"
     
-},{
-    message: "what is your favorite color?",
-    name: "color"   
-}
-  
-];
-inquirer.prompt(questions).then(function(data){
-    console.log(data.userName)
-    console.log(data.color)
-    const queryUrl = `https://api.github.com/users/${data.userName}`;
-    console.log(queryUrl)
-    axios.get(queryUrl).then(function(res){
-      console.log("followers:"+res.data.followers);
-      console.log("following:"+res.data.following);
-      console.log("repos:"+res.data.public_repos);
-      console.log("bio:"+res.data.bio);
-      console.log("name:"+res.data.name);
-      console.log("location:"+res.data.location);
-      console.log("image:"+res.data.avatar_url);
-      console.log("blog url:"+res.data.blog);
-      console.log("profile url:"+res.data.html_url);
-
-    })
-    const starquery = `https://api.github.com/users/${data.userName}/watched`;
-    axios.get(starquery).then(function(starRes){
-        console.log(starRes.data.length);
-    })
-})
-   
-// function writeToFile(fileName, data) {
- 
+// },{
+//     message: "what is your favorite color?",
+//     name: "color"   
 // }
+  
+// ];
+// inquirer.prompt(questions).then(function(data){
+//     const queryUrl = `https://api.github.com/users/${data.userName}`;
+//     axios.get(queryUrl).then(function(res){
+//       console.log("followers:"+res.data.followers);
+//       console.log("following:"+res.data.following);
+//       console.log("repos:"+res.data.public_repos);
+//       console.log("bio:"+res.data.bio);
+//       console.log("name:"+res.data.name);
+//       console.log("image:"+res.data.avatar_url);
+//       console.log("blog url:"+res.data.blog);
+//       console.log("profile url:"+res.data.html_url);
+//       const location = res.data.location.replace(/\s+/g, '');
+//       console.log(location);
+//         const maps = `https://www.google.com/maps/place/${location}/`;
+//         console.log(maps);
+//     })
+//     const starquery = `https://api.github.com/users/${data.userName}/watched`;
+//     axios.get(starquery).then(function(starRes){
+//         console.log(starRes.data.length);
+//     })
+    
+// })
+
+   
+fs.writeFile("profile.html",generateHTML(),(err)=> {
+    if (err) {
+      console.error(err)
+      return
+    }
+  })
 
 // function init() {}
 
 // init()
 
+// const fs = require('fs'),
+//     convertFactory = require('electron-html-to');
+ 
+// const conversion = convertFactory({
+//   converterPath: convertFactory.converters.PDF
+// });
+ 
+// conversion({ html: '<h1>Hello World</h1>' }, function(err, result) {
+//   if (err) {
+//     return console.error(err);
+//   }
+ 
+//   console.log(result.numberOfPages);
+//   console.log(result.logs);
+//   result.stream.pipe(fs.createWriteStream('./index.pdf'));
+//   conversion.kill(); // necessary if you use the electron-server strategy, see bellow for details
+// });

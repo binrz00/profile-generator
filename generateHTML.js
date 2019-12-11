@@ -25,7 +25,7 @@ const colors = {
   }
 };
 
-function generateHTML(data) {
+function generateHTML(data,res,starRes) {
   return `<!DOCTYPE html>
 <html lang="en">
    <head>
@@ -34,7 +34,7 @@ function generateHTML(data) {
       <meta http-equiv="X-UA-Compatible" content="ie=edge" />
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"/>
       <link href="https://fonts.googleapis.com/css?family=BioRhyme|Cabin&display=swap" rel="stylesheet">
-      <title>${data.name}'s profile</title>
+      <title>${res.data.name}'s profile</title>
       <style>
           @page {
             margin: 0;
@@ -170,5 +170,53 @@ function generateHTML(data) {
             zoom: .75; 
           } 
          }
-      </style>`
-        }
+      </style>
+      <body>
+      <div class="wrapper">
+      <div class="photo-header>
+      <img src="${res.data.avatar_url}" alt="image of user">
+      <h1 class="photo-header>Hello</h1><br>
+      <h2 class="photo-header>My name is ${res.data.name}!</h2><br>
+      <div class="links-nav">
+      <a class="nav-link" href="${maps}" target="blank"><i class="fas fa-location-arrow"></i>${res.data.location}</a>
+      <a class="nav-link" href="${res.data.html_url}" target="blank"><i class="fab fa-github-alt"></i>GitHub</a>
+      <a class="nav-link" href="${res.data.blog}" target="blank"><i class="fas fa-rss"></i>Blog</a>
+         </div>
+         </div>
+         <main>
+         <h2>${res.data.bio}</h2>
+         <div class="conatianer">
+         <div class="row">
+         <div class="col">
+         <div class="card>
+         <h3>Public Repositories</h3><br>
+         <h5>${res.data.public_repos}</h5>
+         </div>
+         </div>
+         <div class="col">
+         <div class="card>
+         <h5>followers</h5><br>
+         <h5>${res.data.followers}</h5>
+         </div>
+         </div>
+         </div>
+         <div class="row">
+         <div class="col">
+         <div class="card>
+         <h3>GitHub Stars</h3><br>
+         <h5>${starRes.data.length}</h5>
+         </div>
+         </div>
+         <div class="col">
+         <div class="card>
+         <h5>following</h5><br>
+         <h5>${res.data.following}</h5>
+         </div>
+         </div>
+         </div>
+         </div>
+         </div>
+         </main>
+         </body>
+      `
+        };
